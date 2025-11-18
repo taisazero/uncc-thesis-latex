@@ -120,7 +120,7 @@
 
 %Get LaTeX to Double-Space
 %DOSINGLE Comment next line out  to single space for review purposes
-%\renewcommand{\baselinestretch}{2}
+\renewcommand{\baselinestretch}{2}
 
 % Commands to allow enumerate environment to be used with correct  spacing for uncc requirements.
 \setlength{\parindent}{.17in} % Set the paragraph's indent to match the indent of the enumerate environment.
@@ -593,23 +593,37 @@ ALL RIGHTS RESERVED
 \titlecontents{subsubsubsection}[16em]{}{\contentslabel{4em}}{}
 {\titlerule*[1pc]{.}\contentspage}
 
-\newcommand{\uncctocformat}[4]{
-  \titlecontents{#1}[#2]{\normalfont\mdseries\singlespacing}
-  {\hspace*{2em}\begin{tabular}[t]{@{}p{#3}}\hspace*{-2em}#4}
-  {\hspace*{2em}\begin{tabular}[t]{@{}p{#3}}\hspace*{-2em}}
-  {\end{tabular}\hfill\contentspage}
-}
 
-% TOC formatting for chapter, section levels
-\uncctocformat{chapter}{0pt}{350pt}{\chaptertitlename~\thecontentslabel:~}
-\uncctocformat{section}{48pt}{302pt}{\contentslabel{2em}}
-\uncctocformat{subsection}{96pt}{254pt}{\contentslabel{4em}}
-\uncctocformat{subsubsection}{144pt}{206pt}{\contentslabel{4em}}
+\titlecontents{chapter}[0pt]{\normalfont\mdseries\singlespacing}
+{\chaptertitlename~\thecontentslabel:~}
+{}
+{\hfill\contentspage}
+
+\titlecontents{section}[2em]{\normalfont\mdseries\singlespacing}
+{\contentslabel{2em}}
+{}
+{\hfill\contentspage}
+
+\titlecontents{subsection}[4em]{\normalfont\mdseries\singlespacing}
+{\contentslabel{3em}}
+{}
+{\hfill\contentspage}
+
+\titlecontents{subsubsection}[7em]{\normalfont\mdseries\singlespacing}
+{\contentslabel{4em}}
+{}
+{\hfill\contentspage}
 
 
 % TOC formatting for figure, table
-\uncctocformat{figure}{0pt}{350pt}{\figuretitlename~\thecontentslabel:~}
-\uncctocformat{table}{0pt}{350pt}{\tabletitlename~\thecontentslabel:~}
+\titlecontents{figure}[0pt]{\normalfont\mdseries\singlespacing}
+{\figuretitlename~\thecontentslabel:~}
+{}
+{\hfill\contentspage}
+\titlecontents{table}[0pt]{\normalfont\mdseries\singlespacing}
+{\tabletitlename~\thecontentslabel:~}
+{}
+{\hfill\contentspage}
 
 %%%%%%%%%%%%% UNC Charlotte Guidelines 2014 START (p9) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LIST OF TABLES (optional)
@@ -813,11 +827,12 @@ ALL RIGHTS RESERVED
 %%%%%%%%%%%%% UNC Charlotte Guidelines 2014 END (p11) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\bibname}{REFERENCES}
 % un-comment if you want your references section to be titled BIBLIOGRAPHY
-%\renewcommand{\bibname}{BIBLIOGRAPHY}
+% \renewcommand{\bibname}{BIBLIOGRAPHY}
 
 \renewenvironment{thebibliography}[1]
      {\chapter*{\bibname}%
       \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \markright{}%
       \list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
             \leftmargin\labelwidth
